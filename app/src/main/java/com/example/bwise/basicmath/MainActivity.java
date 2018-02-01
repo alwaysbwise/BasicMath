@@ -54,7 +54,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         num1 = Integer.parseInt(editTextNum1.getText().toString());
         num2 = Integer.parseInt(editTextNum2.getText().toString());
 
-        
+
 
 
         float sum = num1 + num2;
