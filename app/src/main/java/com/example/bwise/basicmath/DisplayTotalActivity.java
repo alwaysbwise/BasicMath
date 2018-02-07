@@ -19,14 +19,11 @@ public class DisplayTotalActivity extends Activity {
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.textViewTotal);
+        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
         // Capture the layout's TextView and set the string as its text
-        TextView textView = findViewById(R.id.textView);
-        textView.setText(message);
-
-
-
+       textViewTotal = findViewById(R.id.textViewTotal);
+        textViewTotal.setText(message);
 
     }
 }
