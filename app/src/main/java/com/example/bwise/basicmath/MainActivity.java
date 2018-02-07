@@ -1,6 +1,7 @@
 package com.example.bwise.basicmath;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -10,11 +11,14 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity implements View.OnClickListener{
 
+    public static final String total = "";
+
     //define instance variables for widgets
     private EditText editTextNum1;
     private EditText editTextNum2;
     private TextView textViewSum;
     private Button buttonSum;
+    private TextView textViewTotal;
     /*
     * private Button buttonDiff;
     * private Button buttonProduct;
@@ -39,6 +43,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         buttonSum = (Button) findViewById(R.id.buttonSum);
         textViewSum = (TextView) findViewById(R.id.textViewSum);
 
+
         //set the listener
         buttonSum.setOnClickListener((View.OnClickListener) this);
         //add other button listeners here
@@ -53,10 +58,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         //get user numbers and cast to floats
         num1 = Integer.parseInt(editTextNum1.getText().toString());
         num2 = Integer.parseInt(editTextNum2.getText().toString());
-
-
-
-
+        
         float sum = num1 + num2;
 
         /*add logic
@@ -65,12 +67,18 @@ public class MainActivity extends Activity implements View.OnClickListener{
         *
         * */
 
-        textViewSum.setText(String.valueOf(sum));
+        DisplayTotalActivity.textViewTotal.setText(String.valueOf(sum));
     }//end calculateAndDisplay()
 
 
     @Override
     public void onClick(View view) {
+        Intent intent = new Intent(this, DisplayTotalActivity.class);
+        TextView textView = (TextView) findViewById(R.id.textViewSum);
+        String message = textView.getText().toString();
+        intent.putExtra(total, message);
         calculateAndDisplay();
+        startActivity(intent);
+
     }
 }//end MainActivity
