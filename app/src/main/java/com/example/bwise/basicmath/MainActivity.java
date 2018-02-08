@@ -16,9 +16,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
     //define instance variables for widgets
     private EditText editTextNum1;
     private EditText editTextNum2;
-    private TextView textViewSum;
+    //private TextView textViewSum;
     private Button buttonSum;
-    private TextView textViewTotal;
+
     /*
     * private Button buttonDiff;
     * private Button buttonProduct;
@@ -41,7 +41,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         editTextNum1 = (EditText) findViewById(R.id.editTextNum1);
         editTextNum2 = (EditText) findViewById(R.id.editTextNum2);
         buttonSum = (Button) findViewById(R.id.buttonSum);
-        textViewSum = (TextView) findViewById(R.id.textViewSum);
+        //textViewSum = (TextView) findViewById(R.id.textViewSum);
 
 
         //set the listener
@@ -52,7 +52,34 @@ public class MainActivity extends Activity implements View.OnClickListener{
         //get SharedPreferences object
         savedValues = getSharedPreferences("SavedValues", MODE_PRIVATE);
 
+
     }//end onCreate
+
+
+
+    @Override
+    public void onPause(){
+        // save instance variables
+        SharedPreferences.Editor editor = savedValues.edit();
+        editor.putInt("num1", num1);
+        editor.putInt("num2", num2);
+        editor.commit();
+
+        super.onPause();
+    }
+
+    @Override
+    public void onResume(){
+        //get variables
+        num1 = savedValues.getInt("num1", 0);
+        num2 = savedValues.getInt("num2", 0);
+        //editTextNum1.setText(num1);
+        //editTextNum2.setText(num2);
+
+        super.onResume();
+
+    }
+
 
     public int calculateAndDisplay(){
 
@@ -84,4 +111,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
         startActivity(intent);
 
     }
+
+
+
+
+
+
+
 }//end MainActivity
