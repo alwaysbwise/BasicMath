@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 public class DisplayTotalActivity extends Activity {
 
-    public TextView textViewTotal;
+    private TextView textViewTotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,15 +15,15 @@ public class DisplayTotalActivity extends Activity {
         setContentView(R.layout.activity_display_total);
 
         //get references to widgets
-       // textViewTotal = (TextView) findViewById(R.id.textViewTotal);
+       textViewTotal = (TextView) findViewById(R.id.textViewTotal);
 
-        // Get the Intent that started this activity and extract the string
-        Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+       // Get the Intent that started this activity and extract the value
+        Bundle bundle = getIntent().getExtras();
 
-        // Capture the layout's TextView and set the string as its text
-       textViewTotal = findViewById(R.id.textViewTotal);
-        textViewTotal.setText(message);
+        int sum = bundle.getInt("sum");
+
+        textViewTotal.setText(Integer.toString(sum));
+
 
     }
 }

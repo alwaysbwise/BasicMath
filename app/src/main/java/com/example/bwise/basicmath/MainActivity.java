@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity implements View.OnClickListener{
 
-    public static final String EXTRA_MESSAGE = "";
+
 
     //define instance variables for widgets
     private EditText editTextNum1;
@@ -47,8 +47,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
         //set the listener
         buttonSum.setOnClickListener((View.OnClickListener) this);
 
-        //editTextNum2.setOnEditorActionListener(this);
-
         //add other button listeners here
 
         //get SharedPreferences object
@@ -56,13 +54,13 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     }//end onCreate
 
-    public void calculateAndDisplay(){
+    public int calculateAndDisplay(){
 
         //get user numbers and cast to floats
         num1 = Integer.parseInt(editTextNum1.getText().toString());
         num2 = Integer.parseInt(editTextNum2.getText().toString());
 
-        float sum = num1 + num2;
+        int sum = num1 + num2;
 
         /*add logic
         * float diff = num1 - num2;
@@ -70,19 +68,22 @@ public class MainActivity extends Activity implements View.OnClickListener{
         *
         * */
 
-        textViewSum.setText(String.valueOf(sum));
+        //textViewSum.setText(String.valueOf(sum));
+
+        return sum;
+
     }//end calculateAndDisplay()
+
+
 
 
     @Override
     public void onClick(View view) {
-        calculateAndDisplay();
 
-        Intent intent = new Intent(this, DisplayTotalActivity.class);
-        textViewSum = findViewById(R.id.textViewSum);
-        String message = textViewSum.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
+        int sum = calculateAndDisplay();
 
+        Intent intent = new Intent(MainActivity.this, DisplayTotalActivity.class);
+        intent.putExtra("sum", sum);
         startActivity(intent);
 
     }
