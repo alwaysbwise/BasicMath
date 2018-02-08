@@ -74,9 +74,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
 
     }//end calculateAndDisplay()
 
-
-
-
     @Override
     public void onClick(View view) {
 

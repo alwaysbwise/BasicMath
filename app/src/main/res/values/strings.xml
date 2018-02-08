@@ -2,5 +2,5 @@
     <string name="app_name">Basic Math</string>
 
     <string name="textViewTotal" />
-    <string name="textViewSum">0</string>
+    <string name="textViewSum"></string>
 </resources>
